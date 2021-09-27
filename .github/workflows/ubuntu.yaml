@@ -1,0 +1,72 @@
+name: Ubuntu CI
+
+on:
+  push:
+    branches:
+      - master
+      - dev
+
+env:
+  BUILD_TYPE: Release
+  GNU_CC: gcc-9
+  GNU_CXX: g++-9
+  LLVM_CC: clang-10
+  LLVM_CXX: clang++-10
+
+jobs:
+  ubuntu:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        compiler: [gcc, clang]
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Install GNU C/C++ Compiler
+      if: ${{ matrix.compiler == 'gcc' }}
+      run: |
+        sudo apt-get update -y
+        sudo apt-get install -y gcc-9 g++-9
+    - name: Install LLVM Clang
+      if: ${{ matrix.compiler == 'clang' }}
+      run: |
+        sudo apt-get update -y
+        sudo apt-get install -y clang-10 clang++-10
+    - name: Install OpenGL envs
+      run: |
+        sudo apt-get update -y
+        sudo apt-get install -y libglu1-mesa-dev mesa-common-dev
+        sudo apt-get install -y libxmu-dev libxi-dev libxrandr-dev libxinerama-dev libxcursor-dev
+    - name: Install GLFW3
+      run: |
+        git clone https://github.com/glfw/glfw.git
+        cd glfw && git checkout 3.3.4
+        mkdir build && cd build
+        cmake -DCMAKE_BUILD_TYPE=Release ..
+        make -j2 && sudo make install
+    - name: Install GLM
+      run: |
+        git clone https://github.com/g-truc/glm.git
+        cd glm && git checkout 0.9.9.8
+        sudo cp -R glm /usr/local/include
+    - name: CMake Build
+      env:
+        C_COMPILER: ${{ matrix.compiler }}
+      run: |
+        cmake -E make_directory ${{runner.workspace}}/build
+        cd ${{runner.workspace}}/build
+        if [ "$C_COMPILER" = "gcc" ]; then
+          cmake $GITHUB_WORKSPACE \
+            -DCMAKE_BUILD_TYPE=$BUILD_TYPE \
+            -DCMAKE_C_COMPILER=$GNU_CC \
+            -DCMAKE_CXX_COMPILER=$GNU_CXX
+        fi
+        if [ "$C_COMPILER" = "clang" ]; then
+          cmake $GITHUB_WORKSPACE \
+            -DCMAKE_BUILD_TYPE=$BUILD_TYPE \
+            -DCMAKE_C_COMPILER=$LLVM_CC \
+            -DCMAKE_CXX_COMPILER=$LLVM_CXX
+        fi
+        cmake --build . --config $BUILD_TYPE --parallel 2

@@ -1,0 +1,42 @@
+name: Windows CI
+
+on:
+  push:
+    branches:
+      - master
+      - dev
+
+env:
+  BUILD_TYPE: Release
+
+jobs:
+  windows:
+    runs-on: windows-latest
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Install GLFW3
+      run: |
+        git clone https://github.com/glfw/glfw.git
+        cd glfw && git checkout 3.3.4
+        mkdir build && cd build
+        cmake .. `
+          -G "Visual Studio 16 2019" -A x64 `
+          -DCMAKE_INSTALL_PREFIX="C:/Program Files/glfw3/"
+        cmake --build . --config "$env:BUILD_TYPE"
+        cmake --build . --config "$env:BUILD_TYPE" --target INSTALL
+    - name: Install GLM
+      run: |
+        git clone https://github.com/g-truc/glm.git
+        cd glm && git checkout 0.9.9.8
+        cd .. && Copy-Item glm "C:/Program Files/glm/" -Recurse
+      
+    - name: CMake Build
+      run: |
+        cmake -E make_directory ${{ runner.workspace }}/build
+        cd ${{ runner.workspace }}/build
+        cmake "$env:GITHUB_WORKSPACE" `
+          -G "Visual Studio 16 2019" -A x64 `
+          -DGLFW3_DIR="C:/Program Files/glfw3" `
+          -DGLM_DIR="C:/Program Files/glm"
+        cmake --build . --config "$env:BUILD_TYPE"

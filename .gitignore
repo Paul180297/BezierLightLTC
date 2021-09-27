@@ -1,0 +1,11 @@
+.vs/
+.vscode/
+Debug/
+Release/
+build/
+x64/
+*.vcxproj.user
+*.png
+imgui.ini
+
+!images/*
