@@ -56,8 +56,13 @@ cmake --build . --config Release
 
 ```
 
-### Copyright
+### License
 
-This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a>.
+[CC BY-NC-SA 4.0](http://creativecommons.org/licenses/by-nc-sa/4.0/), 2021 (c) Takahiro Kuge and Tatsuya Yatagawa
 
-CC BY-NC-SA 4.0, 2021 (c) Takahiro Kuge and Tatsuya Yatagawa
+This project has some third-party dependencies, each of which may have independent licensing:
+
+* [Dear ImGui](https://github.com/ocornut/imgui) - Bloat-free Graphical User interface for C++ with minimal dependencies
+* [stb](https://github.com/nothings/stb): single-file public domain libraries for C/C++
+* [glad](https://github.com/Dav1dde/glad) - Multi-Language Vulkan/GL/GLES/EGL/GLX/WGL Loader-Generator based on the official specs.
+* [tinyobjloader](https://github.com/tinyobjloader/tinyobjloader) - Tiny but powerful single file wavefront obj loader 

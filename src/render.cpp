@@ -200,7 +200,7 @@ void RenderObject::loadOBJ(const std::string &filename) {
     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, iboId);
     glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(unsigned int) * indices.size(),
                  indices.data(), GL_STATIC_DRAW);
-    bufferSize = (int)indices.size();
+    bufferSize = (int) indices.size();
 
     glBindVertexArray(0);
 }

@@ -6,9 +6,9 @@ set(IMGUI_INTERFACE imgui)
 add_definitions(-DIMGUI_IMPL_OPENGL_LOADER_GLAD2)
 add_library(${IMGUI_INTERFACE} INTERFACE)
 file(GLOB
-IMGUI_FILES
-${CMAKE_CURRENT_SOURCE_DIR}/imgui/*.cpp
-${CMAKE_CURRENT_SOURCE_DIR}/imgui/*.h
+    IMGUI_FILES
+    ${CMAKE_CURRENT_SOURCE_DIR}/imgui/*.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/imgui/*.h
 )
 target_sources(${IMGUI_INTERFACE} INTERFACE ${IMGUI_FILES})
 source_group("Imgui" FILES ${IMGUI_FILES})
@@ -36,7 +36,9 @@ source_group("Source Files" FILES ${SOURCE_FILES})
 source_group("Shader Files" FILES ${SHADER_FILES})
 
 include_directories(
-    ${CMAKE_CURRENT_SOURCE_DIR}/utils
+    ${CMAKE_CURRENT_SOURCE_DIR}
+    ${CMAKE_CURRENT_SOURCE_DIR}/stb
+    ${CMAKE_CURRENT_SOURCE_DIR}/tinyobjloader
     ${CMAKE_CURRENT_SOURCE_DIR}/imgui
     ${COMMON_INCLUDE_DIRS}
 )

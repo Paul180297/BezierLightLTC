@@ -59,7 +59,6 @@ struct BezierLight : public RenderObject {
     GLuint bezLightTexId;
     GLuint bernCoeffTexId;
 
-
     glm::mat4 rotateX(float ax);
     glm::mat4 rotateY(float ay);
     glm::mat4 rotateZ(float az);

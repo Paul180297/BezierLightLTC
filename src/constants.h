@@ -13,5 +13,5 @@ static const std::string FLOORLTC_SHADER = "shaders/floorLTC";
 static const std::string BEZLIGHT_SHADER = "shaders/bezierLight";
 
 static const std::string GRADATION_PNG = "data/gradation_squares.png";
-static const std::string CAVITY_PNG = "data/clipped_cavity_small.png";        // for debugging only, apply to square (QUAD) light
+static const std::string CAVITY_PNG = "data/clipped_cavity_small.png";  // for debugging only, apply to square (QUAD) light
 static const std::string ROUGHNESS_TEASER_PNG = "data/roughness_teaser.png";

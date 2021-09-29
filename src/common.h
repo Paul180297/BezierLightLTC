@@ -47,11 +47,11 @@ static constexpr double InvPi = 0.3183098861837907;
                 std::abort();                                                 \
             }                                                                 \
         } while (false)
-#else        // NDEBUG
+#else  // NDEBUG
 #    define Assertion(PREDICATE, ...) \
         do {                          \
         } while (false)
-#endif        // NDEBUG
+#endif  // NDEBUG
 
 // -----------------------------------------------------------------------------
 // Message handlers

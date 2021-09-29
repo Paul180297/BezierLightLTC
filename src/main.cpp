@@ -279,7 +279,6 @@ void update(GLFWwindow *window) {
     camera.cameraPos.z = std::abs(7.0f * cos(frameCount * Pi / 360 - 0.5f * Pi));
     camera.viewMat = glm::lookAt(camera.cameraPos, camera.cameraDir, camera.cameraUp);
 
-
     // Move light
     if (bezLight.isMove) {
         bezLight.translate.y = 1.5f * std::cos(Pi * frameCount / 120.0f);
@@ -324,13 +323,13 @@ int main(int argc, char **argv) {
         return 1;
     }
 
-    #if !defined(__APPLE__)
+#if !defined(__APPLE__)
     glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4);
     glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 5);
-    #else
+#else
     glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4);
     glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 1);
-    #endif
+#endif
     glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
     glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
     glfwWindowHint(GLFW_SRGB_CAPABLE, GL_FALSE);

@@ -34,4 +34,4 @@
 #        define omp_unlock(lock)
 #    endif
 
-#endif        // COMMON_OPENMP_H
+#endif  // COMMON_OPENMP_H
