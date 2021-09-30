@@ -11,7 +11,7 @@ This is an official implementation of the paper,
 
 > Kuge et al., "Real-Time Shading of Free-Form Area Lights using Linearly Transformed Cosines," Journal of Computer Graphics Techniques, No. 4, Vol. 10, 2021.
 
-Please see the [JCGT paper](#) and [our website](https://tatsy.github.io/projects/bezlight21/) for more details.
+Please see the [JCGT paper](#) and [our website](https://tatsy.github.io/projects/kuge2021bezlight/) for more details.
 
 ### Requirements
 
